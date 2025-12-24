@@ -1,0 +1,1128 @@
+/* ===== Базовые стили ===== */
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #111111;
+}
+
+body.page {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff; /* белый фон */
+  color: #111111;      /* чёрный текст */
+}
+
+a {
+  color: #111111;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Шапка ===== */
+
+/* ===== Фиксированная шапка ===== */
+
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+
+  z-index: 1000;
+}
+
+.page-header__logo-link {
+  text-decoration: none;
+}
+
+.page-header__logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111111;
+}
+
+/* ===== Навигация шапки ===== */
+
+.page-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Кнопка с иконкой и подписью */
+.page-header__nav-item {
+  text-decoration: none;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: background 0.2s ease, transform 0.14s ease;
+}
+
+.page-header__nav-item:hover {
+  background: #f3f3f3;
+  transform: translateY(-2px);
+}
+
+/* Иконки */
+.page-header__nav-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.page-header__nav-label {
+  font-size: 12px;
+  margin: 0;
+  color: #333;
+}
+
+/* Кнопка профиля — выделена */
+.page-header__nav-item--primary {
+  background: #111;
+  color: #fff;
+}
+
+.page-header__nav-item--primary .page-header__nav-label {
+  color: #fff;
+}
+
+.page-header__nav-item--primary:hover {
+  background: #333;
+}
+
+
+/* ===== Общий layout: контент под шапкой ===== */
+
+.page__body {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.page-main {
+  flex: 1;
+  padding: 100px 40px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* центрируем содержимое по горизонтали */
+  gap: 32px;
+}
+
+/* Все основные секции и футер ограничены по ширине */
+.page-main > section,
+.page-footer {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ===== Приветствие на главной ===== */
+
+.home-intro__title {
+  font-size: 42px;        /* крупный заголовок */
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.home-intro__subtitle {
+  font-size: 16px;
+  color: #444444;
+  text-align: center;
+  margin: 0;
+}
+
+/* ===== Карточки и общие элементы ===== */
+
+.card {
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Карточка машинки (переиспользуемый блок) */
+.car-card {
+  background: #f7f7f7;
+  border-radius: 12px;
+  border: 1px solid #dddddd;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.car-card__image {
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px dashed #bbbbbb;
+  height: 220px;
+  overflow: hidden;
+}
+
+
+.car-card__image-bg {
+  position: absolute;
+  inset: 0;              /* top:0; right:0; bottom:0; left:0 */
+  background-size: cover;      /* заполняет всё, обрезая лишнее */
+  background-position: center; /* центрирует */
+  background-repeat: no-repeat;
+}
+
+.car-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.car-card__title {
+  font-size: 18px;
+  margin: 0;
+  color: #111111;
+}
+
+.car-card__text {
+  font-size: 14px;
+  color: #333333;
+  margin: 0;
+}
+
+.car-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: #555555;
+}
+
+.car-card__meta-item {
+  padding: 4px 8px;
+  border-radius: 9999px;
+  border: 1px solid #cccccc;
+  background: #ffffff;
+}
+
+/* ===== Секции главной: общая сетка 2x1, одинаковая высота колонок ===== */
+
+section {
+  margin-bottom: 24px;
+}
+
+.home-section__inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch; /* растягиваем по высоте */
+}
+
+@media (max-width: 900px) {
+  .home-section__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-section__media,
+.home-section__content {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Внутри колонок размещаем карточки, которые заполняют высоту столбца */
+.home-section__media > .card,
+.home-section__media > .car-card,
+.home-section__content > .card,
+.home-section__content > .home-section__text-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Заголовок и текст внутри текстовой карточки */
+.home-section__title {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  color: #111111;
+}
+
+.home-section__text {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #333333;
+}
+
+/* Текстовая карточка для описания (оборачиваем текст) */
+.home-section__text-card {
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ===== Подвал ===== */
+
+.page-footer__text {
+  font-size: 12px;
+  color: #666666;
+  margin: 0;
+  padding-top: 12px;
+}
+
+/* ===== Кнопки (для других страниц) ===== */
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn.primary {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+.btn.primary:hover {
+  background-color: #333333;
+}
+
+.btn.secondary {
+  background-color: #f0f0f0;
+  color: #111111;
+}
+
+.btn.secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* ===== Формы (общие) ===== */
+
+form.form {
+  display: flex;
+  flex-direction: column;
+}
+
+form.form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form.form input,
+form.form textarea,
+form.form select {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111111;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+form.form input:focus,
+form.form textarea:focus,
+form.form select:focus {
+  outline: 1px solid #111111;
+}
+
+/* ===== Карточки/списки на других страницах ===== */
+
+.car-list,
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===== Модальное окно (профиль -> добавление машинки) ===== */
+
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ===== Страницы ошибок (если понадобятся) ===== */
+
+body.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+body.error-page .card {
+  max-width: 400px;
+  text-align: center;
+}
+/* ===== Профиль: общая обёртка ===== */
+
+.profile-page {
+  width: 100%;
+}
+
+.profile-page__section {
+  width: 100%;
+}
+
+/* ===== Карточка профиля ===== */
+
+.profile-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+
+.profile-card__logout-link {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 12px;
+  color: #666666;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  border: 1px solid #dddddd;
+  background: #ffffff;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+}
+
+.profile-card__logout-link:hover {
+  background: #f3f3f3;
+  border-color: #cccccc;
+  transform: translateY(-1px);
+}
+
+.profile-card__avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.profile-card__avatar-icon {
+  font-size: 40px;
+}
+
+.profile-card__username {
+  font-size: 13px;
+  color: #777777;
+}
+
+.profile-card__name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.profile-card__email {
+  font-size: 13px;
+  color: #555555;
+}
+
+.profile-card__balance-row {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-card__balance {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.profile-card__balance-label {
+  font-size: 14px;
+  color: #333333;
+}
+
+.profile-card__balance-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.profile-card__topup-btn {
+  margin-top: 0;
+  padding-inline: 18px;
+}
+
+/* ===== Разделы профиля ===== */
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.profile-section__title {
+  margin: 0;
+  font-size: 20px;
+  color: #111111;
+}
+
+.profile-section__action {
+  margin-top: 0;
+}
+
+/* ===== Список ставок ===== */
+
+.profile-bids {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-bid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-bid__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.profile-bid__title {
+  color: #333333;
+}
+
+.profile-bid__amount {
+  font-weight: 600;
+  color: #111111;
+}
+
+.profile-bid__meta {
+  font-size: 12px;
+  color: #777777;
+}
+
+/* ===== Список машин ===== */
+
+.profile-cars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-car__body {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .profile-car__body {
+    flex-direction: column;
+  }
+}
+
+.profile-car__photo {
+  flex-shrink: 0;
+}
+
+.profile-car__photo img {
+  max-width: 180px;
+  max-height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-car__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-car__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111111;
+}
+
+.profile-car__status {
+  font-size: 13px;
+  color: #777777;
+}
+
+.profile-car__description {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: #333333;
+}
+/* ===== Сетка машин в профиле ===== */
+
+.profile-cars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .profile-cars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-cars__item {
+  width: 100%;
+}
+
+
+/* ===== Используем car-card из главной страницы ===== */
+
+.car-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+
+/*    object-fit: cover;      !* ✔ заполняет полностью *!*/
+/*    object-position: center;!* ✔ центрирует *!*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+
+
+.car-card__image--placeholder {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  border: 1px dashed #bbbbbb; /* переносим пунктир сюда */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #888;
+  background: #ffffff;
+}
+/* ===== Страница аукциона ===== */
+
+.auction-page {
+  width: 100%;
+}
+
+.auction-page__section {
+  width: 100%;
+}
+
+.auction-page__intro {
+  text-align: center;
+}
+
+.auction-page__title {
+  margin: 0 0 8px 0;
+  font-size: 36px;
+  text-align: center;
+}
+
+.auction-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+}
+
+/* Поисковая строка аукциона */
+
+.auction-search {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.auction-search__inner {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.auction-search__input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 9999px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+  background: #ffffff;
+  color: #111111;
+}
+
+.auction-search__input:focus {
+  outline: none;
+  border-color: #111111;
+}
+
+.auction-search__button {
+  margin-top: 0;
+}
+
+/* Заголовок и кнопка "Создать аукцион" */
+
+.auction-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auction-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.auction-section__title {
+  margin: 0;
+  font-size: 20px;
+  color: #111111;
+}
+
+.auction-section__action {
+  margin-top: 0;
+}
+
+/* Список аукционов — сетка карточек */
+
+.auction-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .auction-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auction-list__item {
+  width: 100%;
+}
+/* ===== Страница торговой площадки ===== */
+
+.market-page {
+  width: 100%;
+}
+
+.market-page__section {
+  width: 100%;
+}
+
+.market-page__intro {
+  text-align: center;
+}
+
+.market-page__title {
+  margin: 0 0 8px 0;
+  font-size: 36px;
+  text-align: center;
+}
+
+.market-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+}
+
+/* Поисковая строка площадки */
+
+.market-search {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.market-search__inner {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.market-search__input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 9999px;
+  border: 1px solid #cccccc;
+  font-size: 14px;
+  background: #ffffff;
+  color: #111111;
+}
+
+.market-search__input:focus {
+  outline: none;
+  border-color: #111111;
+}
+
+.market-search__button {
+  margin-top: 0;
+}
+
+/* Заголовок и кнопка "Выставить машинку" */
+
+.market-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.market-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.market-section__title {
+  margin: 0;
+  font-size: 20px;
+  color: #111111;
+}
+
+.market-section__action {
+  margin-top: 0;
+}
+
+/* Список объявлений — сетка карточек */
+
+.market-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .market-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.market-list__item {
+  width: 100%;
+}
+/* ===== Страница модерации ===== */
+
+/* ===== Страница модерации ===== */
+
+.moderation-page {
+  width: 100%;
+}
+
+.moderation-page__section {
+  width: 100%;
+}
+
+.moderation-page__intro {
+  text-align: center;
+}
+
+.moderation-page__title {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  text-align: center;
+}
+
+.moderation-page__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+}
+
+/* Заголовок и подсказка в блоке заявок */
+
+.moderation-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.moderation-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.moderation-section__title {
+  margin: 0;
+  font-size: 20px;
+  color: #111111;
+}
+
+.moderation-section__hint {
+  margin: 0;
+  font-size: 13px;
+  color: #777777;
+}
+
+/* Список заявок (карточки по сетке, как market/auction) */
+
+.moderation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .moderation-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.moderation-list__item {
+  width: 100%;
+}
+
+/* Кнопки действий под карточкой */
+
+.moderation-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.moderation-actions__btn {
+  margin-top: 0;
+}
+/* ===== Страницы логина / регистрации ===== */
+
+.auth-page {
+  width: 100%;
+}
+
+.auth-page__section {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.auth-card__title {
+  margin: 0;
+  font-size: 26px;
+  text-align: center;
+}
+
+.auth-card__subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #555555;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.auth-form input {
+  margin-top: 4px;
+}
+
+.auth-form__submit {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.auth-card__footer {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #555555;
+  text-align: center;
+}
+
+.auth-card__footer a {
+  font-weight: 600;
+}
+.auth-card__error {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #ffecec;
+  border: 1px solid #ffb3b3;
+  color: #a30000;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.form-error {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #ffecec;
+  border: 1px solid #ffb3b3;
+  color: #a30000;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+/* ===== Страница кошелька ===== */
+
+.wallet-page {
+  width: 100%;
+}
+
+.wallet-page__section {
+  width: 100%;
+  max-width: 420px;
+}
+
+.wallet-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wallet-card__title {
+  margin: 0;
+  font-size: 26px;
+  text-align: center;
+}
+
+.wallet-card__subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;
+  text-align: center;
+}
+
+.wallet-form__submit {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.wallet-card__hint {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: #777777;
+  text-align: center;
+}

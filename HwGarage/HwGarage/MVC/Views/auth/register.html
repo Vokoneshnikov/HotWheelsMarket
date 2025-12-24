@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main auth-page">
+
+        <section class="auth-page__section">
+            <div class="card auth-card">
+                <h1 class="auth-card__title">Регистрация</h1>
+                <p class="auth-card__subtitle">
+                    Создайте аккаунт, чтобы собирать коллекцию и участвовать в торгах.
+                </p>
+
+                {{error}}
+
+                <form method="POST" action="/register" class="form auth-form">
+                    <label>
+                        Имя
+                        <input type="text" name="firstName" value="{{firstName}}" required />
+                    </label>
+
+                    <label>
+                        Фамилия
+                        <input type="text" name="lastName" value="{{lastName}}" required />
+                    </label>
+
+                    <label>
+                        Имя пользователя
+                        <input type="text" name="username" value="{{username}}" required />
+                    </label>
+
+                    <label>
+                        Email
+                        <input type="email" name="email" value="{{email}}" required />
+                    </label>
+
+                    <label>
+                        Пароль
+                        <input type="password" name="password" required />
+                    </label>
+
+                    <button type="submit" class="btn primary auth-form__submit">
+                        Зарегистрироваться
+                    </button>
+                </form>
+
+                <p class="auth-card__footer">
+                    Уже есть аккаунт?
+                    <a href="/login">Войти</a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

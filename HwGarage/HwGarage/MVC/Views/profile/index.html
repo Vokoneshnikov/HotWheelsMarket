@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль — {{username}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HWGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🔨</div>
+            <div class="page-header__nav-label">Аукцион</div>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🛒</div>
+            <div class="page-header__nav-label">Торговая</div>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item page-header__nav-item--primary">
+            <div class="page-header__nav-icon">👤</div>
+            <div class="page-header__nav-label">Профиль</div>
+        </a>
+    </nav>
+</header>
+
+
+<div class="page__body">
+    <main class="page-main profile-page">
+
+        <!-- Карточка пользователя -->
+        <section class="profile-page__section">
+            <div class="card profile-card">
+                <a href="/logout" class="profile-card__logout-link">
+                    Выйти
+                </a>
+
+                <div class="profile-card__avatar">
+                    <span class="profile-card__avatar-icon">👤</span>
+                </div>
+
+                <div class="profile-card__username">
+                    @{{username}}
+                </div>
+
+                <div class="profile-card__name">
+                    {{firstName}} {{lastName}}
+                </div>
+
+                <div class="profile-card__email">
+                    {{email}}
+                </div>
+
+                <div class="profile-card__balance-row">
+                    <div class="profile-card__balance">
+                        <span class="profile-card__balance-label">Баланс:</span>
+                        <span class="profile-card__balance-value">{{balance}} ₽</span>
+                    </div>
+                    <a href="/wallet" class="btn primary profile-card__topup-btn">
+                        Пополнить
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Текущие ставки -->
+        <section class="profile-page__section profile-section profile-section--bids">
+            <h2 class="profile-section__title">История ставок</h2>
+
+            <ul class="profile-bids">
+                {{#each bids}}
+                <li class="card profile-bid">
+                    <div class="profile-bid__row">
+                            <span class="profile-bid__title">
+                                Ставка на аукцион #{{auctionId}}
+                            </span>
+                        <span class="profile-bid__amount">
+                                {{amount}} ₽
+                            </span>
+                    </div>
+                    <div class="profile-bid__meta">
+                            <span class="profile-bid__date">
+                                {{createdAt}}
+                            </span>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p>{{bidsEmptyMessage}}</p>
+        </section>
+
+        <!-- Мои машинки -->
+        <section class="profile-page__section profile-section profile-section--cars">
+            <div class="profile-section__header">
+                <h2 class="profile-section__title">Мои машинки</h2>
+                <button id="addCarBtn" class="btn primary profile-section__action">
+                    Добавить машинку
+                </button>
+            </div>
+
+            <ul class="profile-cars">
+                {{#each cars}}
+                <li class="profile-cars__item">
+                    <div class="car-card">
+                        <div class="car-card__image">
+                            {{photoBlock}}
+                        </div>
+
+                        <div class="car-card__info">
+                            <h3 class="car-card__title">{{name}}</h3>
+
+                            <p class="car-card__text">
+                                {{description}}
+                            </p>
+
+                            <div class="car-card__meta">
+                                <span class="car-card__meta-item">Статус: {{status}}</span>
+                                <span class="car-card__meta-item">Владелец: вы</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p>{{carsEmptyMessage}}</p>
+        </section>
+
+        <!-- Модалка добавления машинки -->
+        <div id="addCarModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Добавить новую машинку</h3>
+                <form method="POST" action="/cars/add" enctype="multipart/form-data" class="form">
+                    <label>Название:</label>
+                    <input type="text" name="name" required>
+
+                    <label>Описание:</label>
+                    <textarea name="description" rows="3"></textarea>
+
+                    <label>Фото:</label>
+                    <input type="file" name="photo" accept="image/*">
+
+                    <div class="modal-actions">
+                        <button type="submit" class="btn primary">Сохранить</button>
+                        <button type="button" id="closeModal" class="btn secondary">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="/js/addCarModal.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Модерация — ожидающие машинки</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main moderation-page">
+
+        <section class="moderation-page__intro">
+            <h1 class="moderation-page__title">
+                Модерация машинок
+            </h1>
+            <p class="moderation-page__subtitle">
+                Проверьте фото и описание, затем одобрите или отклоните заявку.
+            </p>
+        </section>
+
+        <section class="moderation-page__section moderation-section">
+            <div class="moderation-section__header">
+                <h2 class="moderation-section__title">Заявки, ожидающие подтверждения</h2>
+                <p class="moderation-section__hint">
+                    После одобрения машинка появится в профиле владельца и сможет участвовать в торгах.
+                </p>
+            </div>
+
+            <ul class="moderation-list">
+                {{#each pendingCars}}
+                <li class="moderation-list__item">
+                    <div class="car-card">
+                        <div class="car-card__image">
+                            {{photoBlock}}
+                        </div>
+
+                        <div class="car-card__info">
+                            <h3 class="car-card__title">{{name}}</h3>
+
+                            <p class="car-card__text">
+                                {{description}}
+                            </p>
+
+                            <div class="car-card__meta">
+                        <span class="car-card__meta-item">
+                            Владелец: {{ownerName}}
+                        </span>
+                                <span class="car-card__meta-item">
+                            Создано: {{createdAt}}
+                        </span>
+                            </div>
+
+                            <form method="POST" action="/admin/moderation" class="form">
+                                <input type="hidden" name="car_id" value="{{carId}}" />
+
+                                <div class="moderation-actions">
+                                    <button type="submit" name="decision" value="approve" class="btn primary moderation-actions__btn">
+                                        Одобрить
+                                    </button>
+                                    <button type="submit" name="decision" value="reject" class="btn secondary moderation-actions__btn">
+                                        Отклонить
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p>{{emptyMessage}}</p>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Успешное пополнение — {{username}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HWGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🔨</div>
+            <div class="page-header__nav-label">Аукцион</div>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🛒</div>
+            <div class="page-header__nav-label">Торговая</div>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item page-header__nav-item--primary">
+            <div class="page-header__nav-icon">👤</div>
+            <div class="page-header__nav-label">Профиль</div>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main auth-page">
+        <section class="auth-page__section">
+            <div class="card auth-card">
+                <h1 class="auth-card__title">Пополнение успешно</h1>
+                <p class="auth-card__subtitle">
+                    На ваш баланс зачислено: <strong>{{amount}} ₽</strong>
+                </p>
+
+                <p class="auth-card__subtitle">
+                    Текущий баланс: <strong>{{balance}} ₽</strong>
+                </p>
+
+                <a href="/profile" class="btn primary auth-form__submit">
+                    Вернуться в профиль
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

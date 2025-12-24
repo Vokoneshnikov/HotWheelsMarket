@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аукцион</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item page-header__nav-item--primary">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main auction-page">
+
+        <section class="auction-page__intro">
+            <h1 class="auction-page__title">
+                Аукцион
+            </h1>
+            <p class="auction-page__subtitle">
+                Ищите интересующие модели и участвуйте в торгах в один клик.
+            </p>
+        </section>
+
+        <section class="auction-page__section">
+            <form method="GET" action="/auction" class="auction-search">
+                <div class="auction-search__inner">
+                    <input
+                            type="text"
+                            name="q"
+                            class="auction-search__input"
+                            placeholder="Найдите аукцион по названию машинки"
+                            value="{{search}}"
+                    />
+                    <button type="submit" class="btn primary auction-search__button">
+                        Найти
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="auction-page__section auction-section">
+            <div class="auction-section__header">
+                <h2 class="auction-section__title">Активные аукционы</h2>
+                <a href="/auction/create" class="btn secondary auction-section__action">
+                    Создать аукцион
+                </a>
+            </div>
+
+            <ul class="auction-list">
+                {{#each auctions}}
+                <li class="auction-list__item">
+                    <div class="car-card">
+                        <div class="car-card__image">
+                            {{photoBlock}}
+                        </div>
+
+                        <div class="car-card__info">
+                            <h3 class="car-card__title">{{name}}</h3>
+
+                            <p class="car-card__text">
+                                {{description}}
+                            </p>
+
+                            <div class="car-card__meta">
+                        <span class="car-card__meta-item">
+                            Текущая ставка: {{currentBid}} ₽
+                        </span>
+                                <span class="car-card__meta-item">
+                            Шаг: {{bidStep}} ₽
+                        </span>
+                                <span class="car-card__meta-item">
+                            До: {{endsAt}}
+                        </span>
+                            </div>
+
+                            <div>
+                                <a href="/auction/view?id={{auctionId}}" class="btn primary">
+                                    Открыть аукцион →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p>{{auctionsEmptyMessage}}</p>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

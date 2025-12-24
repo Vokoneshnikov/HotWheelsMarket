@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кошелёк</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HWGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🔨</div>
+            <div class="page-header__nav-label">Аукцион</div>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <div class="page-header__nav-icon">🛒</div>
+            <div class="page-header__nav-label">Торговая</div>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item page-header__nav-item--primary">
+            <div class="page-header__nav-icon">👤</div>
+            <div class="page-header__nav-label">Профиль</div>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main auth-page">
+        <section class="auth-page__section">
+            <div class="card auth-card">
+                <h1 class="auth-card__title">Пополнение баланса</h1>
+                <p class="auth-card__subtitle">
+                    Текущий баланс: <strong>{{balance}} ₽</strong>
+                </p>
+
+                {{ error }}
+
+                <form method="POST" action="/wallet/create-session" class="auth-form">
+                    <label>
+                        Сумма пополнения (₽)
+                        <input type="number"
+                               name="amount"
+                               step="0.01"
+                               min="1"
+                               value="{{amount}}"
+                               required />
+                    </label>
+
+                    <button type="submit" class="btn primary auth-form__submit">
+                        Перейти к оплате
+                    </button>
+                </form>
+
+                <p class="auth-card__footer">
+                    После оплаты вы будете перенаправлены обратно в HWGarage.
+                </p>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

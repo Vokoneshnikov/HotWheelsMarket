@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Торговая площадка</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item page-header__nav-item--primary">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main market-page">
+
+        <section class="market-page__intro">
+            <h1 class="market-page__title">
+                Торговая площадка
+            </h1>
+            <p class="market-page__subtitle">
+                Покупайте и продавайте модели по фиксированной цене.
+            </p>
+        </section>
+
+        <section class="market-page__section">
+            <form method="GET" action="/market" class="market-search">
+                <div class="market-search__inner">
+                    <input
+                            type="text"
+                            name="q"
+                            class="market-search__input"
+                            placeholder="Найдите модель по названию"
+                            value="{{search}}"
+                    />
+                    <button type="submit" class="btn primary market-search__button">
+                        Найти
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="market-page__section market-section">
+            <div class="market-section__header">
+                <h2 class="market-section__title">Активные объявления</h2>
+                <a href="/market/add" class="btn secondary market-section__action">
+                    Выставить машинку
+                </a>
+            </div>
+
+            <ul class="market-list">
+                {{#each listings}}
+                <li class="market-list__item">
+                    <div class="car-card">
+                        <div class="car-card__image">
+                            {{photoBlock}}
+                        </div>
+
+                        <div class="car-card__info">
+                            <h3 class="car-card__title">{{name}}</h3>
+
+                            <p class="car-card__text">
+                                {{description}}
+                            </p>
+
+                            <div class="car-card__meta">
+                        <span class="car-card__meta-item">
+                            Цена: {{price}} ₽
+                        </span>
+                                <span class="car-card__meta-item">
+                            Продавец: {{sellerName}}
+                        </span>
+                            </div>
+
+                            <form method="POST" action="/market/buy" class="form">
+                                <input type="hidden" name="listing_id" value="{{listingId}}" />
+                                <button type="submit" class="btn primary">Купить</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            <p>{{listingsEmptyMessage}}</p>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

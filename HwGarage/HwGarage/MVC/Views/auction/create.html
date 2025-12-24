@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать аукцион</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item page-header__nav-item--primary">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main">
+
+        <section>
+            <h1 class="home-intro__title">Создать аукцион</h1>
+            <p class="home-intro__subtitle">
+                Выберите машинку из вашей коллекции, начальную цену, шаг ставки и время окончания.
+            </p>
+        </section>
+
+        <section>
+            <div class="card">
+                {{error}}
+
+                <form method="POST" action="/auction/create" class="form">
+                    <label>
+                        Машинка
+                        <select name="car_id" required>
+                            {{carOptions}}
+                        </select>
+                    </label>
+
+                    <label>
+                        Стартовая цена (RUB)
+                        <input type="number"
+                               name="start_price"
+                               step="0.01"
+                               min="0"
+                               value="{{startPrice}}"
+                               required />
+                    </label>
+
+                    <label>
+                        Шаг ставки (RUB)
+                        <input type="number"
+                               name="bid_step"
+                               step="0.01"
+                               min="0.01"
+                               value="{{bidStep}}"
+                               required />
+                    </label>
+
+                    <label>
+                        Время окончания
+                        <input type="datetime-local"
+                               name="ends_at"
+                               value="{{endsAt}}"
+                               required />
+                    </label>
+
+                    <button type="submit" class="btn primary">
+                        Создать аукцион
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

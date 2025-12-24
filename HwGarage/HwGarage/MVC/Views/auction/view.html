@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аукцион — {{name}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item page-header__nav-item--primary">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main auction-page">
+
+        <section class="auction-page__section">
+            <h1 class="auction-page__title">
+                Аукцион: {{name}}
+            </h1>
+            <p class="auction-page__subtitle">
+                Следите за ставками и успейте сделать свою до окончания торгов.
+            </p>
+        </section>
+
+        <section class="auction-page__section">
+            <div class="home-section__inner">
+                <div class="home-section__media">
+                    <div class="car-card">
+                        <div class="car-card__image">
+                            {{photoBlock}}
+                        </div>
+                        <div class="car-card__info">
+                            <h3 class="car-card__title">{{name}}</h3>
+                            <p class="car-card__text">
+                                {{description}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-section__content">
+                    <div class="home-section__text-card">
+                        <h2 class="home-section__title">Информация об аукционе</h2>
+                        <p class="home-section__text"><strong>Статус:</strong> {{status}}</p>
+                        <p class="home-section__text"><strong>Текущая ставка:</strong> {{currentBid}} ₽</p>
+                        <p class="home-section__text"><strong>Шаг ставки:</strong> {{bidStep}} ₽</p>
+                        <p class="home-section__text"><strong>Окончание:</strong> {{endsAt}}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="auction-page__section">
+            <div class="profile-section">
+                <h2 class="profile-section__title">Ставки</h2>
+
+                <ul class="card-list">
+                    {{#each bids}}
+                    <li class="card">
+                        {{bidderName}}: {{amount}} ₽
+                        <br/><small>{{createdAt}}</small>
+                    </li>
+                    {{/each}}
+                </ul>
+
+                <p>{{bidsEmptyMessage}}</p>
+            </div>
+        </section>
+
+
+        <section class="auction-page__section">
+            <div class="card">
+                <h2 class="profile-section__title">Сделать ставку</h2>
+                <form method="POST" action="/auction/bid" class="form">
+                    <input type="hidden" name="auction_id" value="{{auctionId}}" />
+
+                    <label>Сумма (₽):</label>
+                    <input type="number" name="amount" step="0.01" min="0" required />
+
+                    <button type="submit" class="btn primary">Сделать ставку</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

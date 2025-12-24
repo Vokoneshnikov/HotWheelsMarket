@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выставить машинку</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page">
+
+<header class="page-header">
+    <a href="/" class="page-header__logo-link">
+        <div class="page-header__logo">HwGarage</div>
+    </a>
+
+    <nav class="page-header__nav">
+        <a href="/auction" class="page-header__nav-item">
+            <span class="page-header__nav-icon">🔨</span>
+            <span class="page-header__nav-label">Аукцион</span>
+        </a>
+
+        <a href="/market" class="page-header__nav-item page-header__nav-item--primary">
+            <span class="page-header__nav-icon">🛒</span>
+            <span class="page-header__nav-label">Площадка</span>
+        </a>
+
+        <a href="/profile" class="page-header__nav-item">
+            <span class="page-header__nav-icon">👤</span>
+            <span class="page-header__nav-label">Профиль</span>
+        </a>
+    </nav>
+</header>
+
+<div class="page__body">
+    <main class="page-main market-page">
+        <section class="market-page__section">
+            <h1 class="market-page__title">
+                Создать объявление
+            </h1>
+            <p class="market-page__subtitle">
+                Выберите машинку из своей коллекции и укажите цену продажи.
+            </p>
+
+            <div class="card">
+                {{error}}
+
+                <form method="POST" action="/market/add" class="form">
+                    <label>Машинка:</label>
+                    <select name="car_id" required>
+                        {{carOptions}}
+                    </select>
+
+                    <label>Цена (₽):</label>
+                    <input type="number"
+                           name="price"
+                           step="0.01"
+                           min="0"
+                           required
+                           value="{{price}}" />
+
+                    <button type="submit" class="btn primary">Опубликовать</button>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
